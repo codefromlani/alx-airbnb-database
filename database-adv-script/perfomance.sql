@@ -8,7 +8,8 @@ JOIN properties ON bookings.property_id = properties.id
 LEFT JOIN payments ON bookings.id = payments.booking_id;
 
 -- Optimized query: reduced unnecessary columns and ensured indexed joins
-SELECT 
+"WHERE", "AND"
+EXPLAIN SELECT  
     bookings.id AS booking_id,
     bookings.start_date,
     bookings.end_date,
