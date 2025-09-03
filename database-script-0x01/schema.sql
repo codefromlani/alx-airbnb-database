@@ -1,6 +1,6 @@
 -- User Table
 CREATE TABLE users (
-    user_id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 -- Property Table
 CREATE TABLE properties (
-    property_id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY,
     host_id UUID NOT NULL,
     name VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,
@@ -29,7 +29,7 @@ CREATE INDEX idx_property_location ON properties(location);
 
 -- Booking Table
 CREATE TABLE bookings (
-    booking_id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY,
     property_id UUID NOT NULL,
     user_id UUID NOT NULL,
     start_date DATE NOT NULL,
@@ -47,7 +47,7 @@ CREATE INDEX idx_booking_property_id ON bookings(property_id);
 
 -- Payment Table
 CREATE TABLE payments (
-    payment_id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY,
     booking_id UUID NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
     payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -60,7 +60,7 @@ CREATE INDEX idx_payment_booking_id ON payments(booking_id);
 
 -- Review Table
 CREATE TABLE reviews (
-    review_id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY,
     property_id UUID NOT NULL,
     user_id UUID NOT NULL,
     rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
@@ -76,7 +76,7 @@ CREATE INDEX idx_review_property_id ON reviews(property_id);
 
 -- Message Table
 CREATE TABLE messages (
-    message_id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY,
     sender_id UUID NOT NULL,
     recipient_id UUID NOT NULL,
     message_body TEXT NOT NULL,
